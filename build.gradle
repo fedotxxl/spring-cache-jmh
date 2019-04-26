@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-  id "me.champeau.gradle.jmh" version "0.4.7"
+  id "me.champeau.gradle.jmh" version "0.4.8"
 }
 
 apply plugin: 'java'
@@ -37,13 +37,16 @@ repositories {
 dependencies {
   compile 'org.ehcache:ehcache'
   compile 'org.springframework.boot:spring-boot-starter-cache'
+  compile 'com.github.ben-manes.caffeine:caffeine:2.7.0'
+  compile 'commons-lang:commons-lang:2.6'
+
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 jmh {
   fork = 1
   threads = 1
-  warmupIterations = 5
-  iterations = 5
-  timeUnit = 'ns'
 }
